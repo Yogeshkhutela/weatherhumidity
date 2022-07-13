@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>humidity</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="input-container">
+		<input type="text" id="city" placeholder="enter city">
+		<div>
+			<button type="submit" class="button-container" onclick="get()">Fetch details</button>
+		</div>
+		<div id="res" class="result"></div>
+	</div>
+
+	<script type="text/javascript">
+
+	function get(){
+			var cityName=document.getElementById("city").value;
+		fetch('https://api.openweathermap.org/data/2.5/weather?q='+cityName+'&appid=5d1c7619508328fdc42c85ad361f602f')
+.then((response) => {
+return response.json();
+})
+.then((myJson) => {
+console.log(myJson.main.humidity);
+document.getElementById("res").innerHTML = myJson.main.humidity;
+}).catch(function(){
+	console.log("error")
+	document.getElementById("res").innerHTML="please enter valid city";
+});}	
+	</script>
+
+</body>
+</html>
